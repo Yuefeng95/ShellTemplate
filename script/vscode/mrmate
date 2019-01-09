@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cmd="/home/xingyuefeng/tools/rmate -p 52698 "
+echo $cmd $@
+$cmd  $@

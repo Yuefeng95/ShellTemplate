@@ -1,0 +1,64 @@
+#!/bin/sh
+
+export TERM=xterm
+
+jobs=("AVS 5674.pts-4.dev1" \
+      "tmp 24161.pts-45.dev1" \
+      "SmartHome 6572.pts-31.dev1" \
+      "tencent 6888.pts-10.dev1" \
+      "github 17941.pts-23.dev1" \
+     )
+
+#######################################################################
+
+echo "  Screen jobs"
+echo "  Your cmd: $@"
+
+index=0
+for var in "${jobs[@]}"
+do 
+  echo -e "  [ $index ] $var"
+  ((index++))
+done
+
+if [ $# -lt 1 ]; then
+  echo -e \
+  "-----------------------------------------------------------------------
+  WARING: Please inter your job num!"
+  echo -e \
+  "-----------------------------------------------------------------------
+  Build new screen
+    mscreen -b"
+  exit
+fi
+
+# build new screen
+if [ $1 = "-b" ]; then
+  echo "New screen"
+  screen
+  exit
+fi
+
+# input must be int
+expr $1 + 6 &>/dev/null
+if [ $? -ne 0 ]; then
+  echo -e \
+  "-----------------------------------------------------------------------
+  Your input is invalid!"
+  exit
+fi
+
+# input must less then index
+if [ $1 -gt $index ]; then
+  echo -e \
+  "------------------------------------------------------------------------
+  Your input is not in the jobs!"
+  exit
+fi
+
+id="${jobs[$1]}"
+id_=($id)
+echo -e "  Use jobs $id "
+cmd="screen -r -d ${id_[1]}"
+echo $cmd
+$cmd
