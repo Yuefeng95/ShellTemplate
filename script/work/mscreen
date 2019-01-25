@@ -7,7 +7,13 @@ jobs=("AVS 5674.pts-4.dev1" \
       "SmartHome 6572.pts-31.dev1" \
       "tencent 6888.pts-10.dev1" \
       "github 17941.pts-23.dev1" \
-     )
+      "saipr 2014.pts-10.dev1" \
+      "saih2 25861.pts-11.dev1" \
+      "zhaoge 9902.pts-18.dev1" \
+      "guangheaibo 3472.pts-19.dev1" \
+      "qingping 20956.pts-49.dev1" \
+      "tencent-s 4519.pts-4.dev1" \
+      )
 
 #######################################################################
 
@@ -24,11 +30,20 @@ done
 if [ $# -lt 1 ]; then
   echo -e \
   "-----------------------------------------------------------------------
-  WARING: Please inter your job num!"
+  WARING: Please inter your job's num!"
   echo -e \
   "-----------------------------------------------------------------------
   Build new screen
-    mscreen -b"
+    mscreen -b
+  Add new screen
+    mscreen -a"
+  exit
+fi
+
+# build new screen
+if [ $1 = "-a" ]; then
+  echo "Add new screen"
+  vim ~/bin/mscreen
   exit
 fi
 
