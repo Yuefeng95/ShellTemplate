@@ -1,0 +1,16 @@
+#!/bin/sh
+jobs=("AVS 5674.pts-4.dev1" \
+      "tmp 24161.pts-45.dev1" \
+      "SmartHome 6572.pts-31.dev1" \
+      "tencent 6888.pts-10.dev1" \
+      "github 17941.pts-23.dev1" \
+      "saipr 2014.pts-10.dev1" \
+      "saih2 25861.pts-11.dev1" \
+      "zhaoge 9902.pts-18.dev1" \
+      "guangheaibo 8309.pts-18.dev1" \
+      "qingping 20956.pts-49.dev1" \
+      "tencent-s 4519.pts-4.dev1" \
+      "opus_enca 20286.pts-4.dev1" \
+      "jenkins 32295.pts-18.dev1" \
+      ##job##
+      )

@@ -1,20 +1,42 @@
 #!/bin/sh
 
 export TERM=xterm
+mark="##job##"
 
-jobs=("AVS 5674.pts-4.dev1" \
-      "tmp 24161.pts-45.dev1" \
-      "SmartHome 6572.pts-31.dev1" \
-      "tencent 6888.pts-10.dev1" \
-      "github 17941.pts-23.dev1" \
-      "saipr 2014.pts-10.dev1" \
-      "saih2 25861.pts-11.dev1" \
-      "zhaoge 9902.pts-18.dev1" \
-      "guangheaibo 3472.pts-19.dev1" \
-      "qingping 20956.pts-49.dev1" \
-      "tencent-s 4519.pts-4.dev1" \
-      )
+# build new screen
+if [ $# -ge 1 ]; then
+  if [ $1 = "-a" ]; then
+    if [ $# -lt 3 ]; then
+      echo "Please input your job-name and job-number!"
+      exit
+    fi
+  #  if [ -n "`grep "$2" ~/bin/mscreen-tool`" ]; then
+  #    echo "Your input job's name \"$2\", has already exist"
+  #    exit
+  #  fi
+    echo "Add new screen"
+    sed -i "s|$mark|\"$2 $3\"\ \\\\\n      $mark|g" ~/bin/mscreen-tool 
+    shift $#
+  fi
+fi
 
+# build new screen
+if [ $# -ge 1 ]; then
+  if [ $1 = "-d" ]; then
+    if [ $# -lt 2 ];then
+      echo "Please input the job's index!"
+      exit
+    fi
+    delete_job_index_header_line_number=2
+    delete_job_index=`expr $2 + $delete_job_index_header_line_number`
+    echo "delete $2 job"
+    echo "`sed -n ${delete_job_index}p ~/bin/mscreen-tool`" 
+    sed -i "${delete_job_index}d" ~/bin/mscreen-tool
+    shift $#
+  fi
+fi
+
+source ~/bin/mscreen-tool
 #######################################################################
 
 echo "  Screen jobs"
@@ -36,14 +58,9 @@ if [ $# -lt 1 ]; then
   Build new screen
     mscreen -b
   Add new screen
-    mscreen -a"
-  exit
-fi
-
-# build new screen
-if [ $1 = "-a" ]; then
-  echo "Add new screen"
-  vim ~/bin/mscreen
+    mscreen -a <job name> <job number>
+  Delete one screen job
+    mscreen -d <job index>"
   exit
 fi
 
