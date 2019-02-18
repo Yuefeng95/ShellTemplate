@@ -22,6 +22,7 @@ fi
 
 # build new screen
 if [ $# -ge 1 ]; then
+  source ~/bin/mscreen-tool
   if [ $1 = "-d" ]; then
     if [ $# -lt 2 ];then
       echo "Please input the job's index!"
@@ -29,8 +30,14 @@ if [ $# -ge 1 ]; then
     fi
     delete_job_index_header_line_number=2
     delete_job_index=`expr $2 + $delete_job_index_header_line_number`
-    echo "delete $2 job"
-    echo "`sed -n ${delete_job_index}p ~/bin/mscreen-tool`" 
+    delete_job_name_pid="${jobs[$2]}"
+    delete_job_name=($delete_job_name_pid)
+    delete_job_pid=${delete_job_name[1]}
+    echo "  *******"
+    echo "  *******       delete ${delete_job_pid} job"
+    echo "  ******* `sed -n ${delete_job_index}p ~/bin/mscreen-tool`" 
+    echo "  *******"
+    screen -X -S ${delete_job_pid} quit
     sed -i "${delete_job_index}d" ~/bin/mscreen-tool
     shift $#
   fi
@@ -58,7 +65,7 @@ if [ $# -lt 1 ]; then
   Build new screen
     mscreen -b
   Add new screen
-    mscreen -a <job name> <job number>
+    mscreen -a <job name> <job pid>
   Delete one screen job
     mscreen -d <job index>"
   exit
