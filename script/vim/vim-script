@@ -1,0 +1,9 @@
+let &termencoding=&encoding
+set fileencodings=utf-8,gbk
+set cursorline
+set cursorline
+set cursorcolumn
+hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+set tags=tags;
+syntax on
+set hlsearch
