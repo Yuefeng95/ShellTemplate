@@ -9,6 +9,8 @@ echo "/path-to-your-dir/core.%e.%p" > /proc/sys/kernel/core_pattern
 ### use core dumped
 ```
 gdb `which your-execution-program` your-core-dump
+
+gdb --directory /path/to/source /path/to/program --core core
 ```
 
 ### lib address in proc
