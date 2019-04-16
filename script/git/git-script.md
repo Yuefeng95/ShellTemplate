@@ -2,6 +2,30 @@
 
 ==============
 
+## Init your git
+
+```
+git config --global user.name "Me"
+git config --global user.email "My@xx.com"
+```
+
+## Config a exist project which without git
+
+```
+git init
+git add --all
+git commit -m "Initial Commit"
+git remote add origin <your-remote-git>
+git push -u origin master
+```
+
+## Config a exist project which tracked by git already
+
+```
+git remote set-url origin <your-remote-git>
+git push -u origin master
+```
+
 ## Add lib tag and get version
 
 ```
