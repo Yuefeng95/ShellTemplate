@@ -7,3 +7,10 @@ hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=whi
 set tags=tags;
 syntax on
 set hlsearch
+
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
+set showmatch
+
